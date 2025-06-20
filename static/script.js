@@ -3,7 +3,7 @@ async function submitResponse() {
   const resultElement = document.getElementById('result');
 
   try {
-    const response = await fetch('/analyze', {
+    const response = await fetch('https://philosophy-ai.onrender.com/analyze', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -7,22 +7,26 @@ from openai import OpenAI
 # Load the env file
 load_dotenv()
 
-# Initialize Flask app and CORS
+# Initialize Flask app and cors
 app = Flask(__name__)
 CORS(app)
 
-# Create a client using the OpenAI key
+# Creating a client using the OpenAI api key
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Serve the frontend index.html from the static folder
+# Serve the frontend index.html from the static folder, basically setting up my homepage route and all the files within the static folder
 @app.route('/')
 def serve_frontend():
     return send_from_directory('static', 'index.html')
-
+# This serves file sin my static folder when requested
 @app.route('/<path:filename>')
 def serve_static_files(filename):
     return send_from_directory('static', filename)
 
+# This is an endpoint that handles user responses
+# Gets the user response and sends to the api(gpt 3.5 turbo) for analysis in the form of a prompt
+# Grabs the AI response and send it back as a json object
+# Error handling is included to catch any problems with the OpenAI api call
 @app.route('/analyze', methods=['POST'])
 def analyze():
     data = request.json

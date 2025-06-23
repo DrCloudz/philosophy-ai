@@ -22,7 +22,7 @@ def serve_frontend():
 # This serves file sin my static folder when requested
 @app.route('/<path:filename>')
 def serve_static_files(filename):
-    return send_from_directory('static', 'styles.css')
+    return send_from_directory('static', 'styles.css', 'script.js')
 
 
 # This is an endpoint that handles user responses

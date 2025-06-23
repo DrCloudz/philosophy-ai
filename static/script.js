@@ -1,3 +1,6 @@
+//Asynch function that corrospondes with the onClick event
+//Once a click is made the function will analyze the users input and then grab everything from the live backend on render
+//It uses the anyanlysis get rroute to publish everything to the front page.
 async function submitResponse() {
   const userInput = document.getElementById('userInput').value;
   const resultElement = document.getElementById('result');
@@ -10,7 +13,7 @@ async function submitResponse() {
       },
       body: JSON.stringify({ response: userInput })
     });
-
+      //Asynch Function for error cathcing once analysis is made
     const data = await response.json();
 
     if (response.ok) {

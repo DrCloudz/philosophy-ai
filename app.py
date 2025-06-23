@@ -10,6 +10,7 @@ load_dotenv()
 # Initialize Flask app and cors
 app = Flask(__name__)
 CORS(app)
+CORS(app, origins=["https://philosophy-ai-1.onrender.com"])
 
 # Creating a client using the OpenAI api key
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -21,7 +22,8 @@ def serve_frontend():
 # This serves file sin my static folder when requested
 @app.route('/<path:filename>')
 def serve_static_files(filename):
-    return send_from_directory('static', filename)
+    return send_from_directory('static', 'styles.css')
+
 
 # This is an endpoint that handles user responses
 # Gets the user response and sends to the api(gpt 3.5 turbo) for analysis in the form of a prompt
@@ -53,7 +55,7 @@ def analyze():
                 {"role": "system", "content": "You are a philosophy professor."},
                 {"role": "user", "content": prompt}
             ],
-            temperature=0.7
+            temperature=0.6
         )
         result = chat.choices[0].message.content
         return jsonify({"analysis": result})

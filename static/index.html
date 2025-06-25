@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <title>Philosophy AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="\static\styles.css">
 </head>
+ //This is where the APi will generate ethical and world view questions to the user
+
 <body>
   <div class="container">
     <h1>🧠 Philosophy AI</h1>
@@ -17,11 +19,12 @@
     <textarea id="userInput" placeholder="Share your thoughts here..."></textarea>
 
     <button onclick="submitResponse()">🧐 Analyze</button>
+    <button onclick="generateNewDilemma()">🔄 New Dilemma</button>
 
     <h2>Philosophical Analysis</h2>
     <pre id="result">Waiting for your response...</pre>
   </div>
 
-  <script src="script.js"></script>
+  <script src="/static/script.js"></script>
 </body>
 </html>

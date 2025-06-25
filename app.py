@@ -22,8 +22,7 @@ def serve_frontend():
 # This serves file sin my static folder when requested
 @app.route('/<path:filename>')
 def serve_static_files(filename):
-    return send_from_directory('static', 'styles.css', 'script.js')
-
+    return send_from_directory('styles.css','script.js')
 
 # This is an endpoint that handles user responses
 # Gets the user response and sends to the api(gpt 3.5 turbo) for analysis in the form of a prompt
@@ -61,7 +60,24 @@ def analyze():
         return jsonify({"analysis": result})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+     
+     # This GET enpoint generates a dilemma itself.
+    @app.route('/generate-dilemma', methond=['GET'])
+    def generate_dilemma():
+        try:
+            chat = client.completion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a philosophy professor."},
+                    {"role": "user", "content": "Generate a philosophical dilemma for students to discuss."}
+                ],
+                temperature=0.6
+            )
+            dilemma = chat.choices[0].message.content.strip()
 
+            return jsonify({"dilemma": dilemma})
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

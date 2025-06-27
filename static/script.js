@@ -28,19 +28,19 @@ async function submitResponse() {
   }
 }
  async function generateDilemma(){
-  const dilemmaElelment = document.getElememntById('dilemma');
+  const dilemmaElement = document.getElementById('dilemma');
   try {
     const response = await fetch('https://philosophy-ai.onrender.com/generate-dilemma');
     const data = await response.json();
 
     if (response.ok) {
-      dilemmaElelment.innerText = data.dilemma;
+      dilemmaElement.innerText = data.dilemma;
     } else {
-      dilemmaElelment.innerText = "Error: " + (data.error || 'Something went wrong.');
+      dilemmaElement.innerText = "Error: " + (data.error || 'Something went wrong.');
       console.error("Server returned an error:", data);
     }
   } catch (error) {
-    dilemmaElelment.innerText = "Network error: " + error.message;
+    dilemmaElement.innerText = `Network error: ${error.message || 'Unable to fetch dilemma.'}`;
     console.error("Network or server error:", error);
   }
  }

@@ -44,7 +44,7 @@ def analyze():
     - Friedrich Nietzsche
     - John Stuart Mill
 
-    Give each a score from 0 to 100 on agreement.
+    Give each a score from 0 to 100 on agreement. Be sure to explore reasoning annd make it seem like the user is actually reading a response from said philosophers. 
     """
 
     try:
@@ -62,10 +62,10 @@ def analyze():
         return jsonify({"error": str(e)}), 500
      
      # This GET enpoint generates a dilemma itself.
-    @app.route('/generate-dilemma', methond=['GET'])
+    @app.route('/generate-dilemma', methonds=['GET'])
     def generate_dilemma():
         try:
-            chat = client.completion.create(
+            chat = client.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "You are a philosophy professor."},

@@ -43,6 +43,10 @@ def analyze():
     - Immanuel Kant
     - Friedrich Nietzsche
     - John Stuart Mill
+    - Plato
+    - Aristotle
+    - Confucius
+    - Julius Nyerere
 
     Give each a score from 0 to 100 on agreement. Be sure to explore reasoning annd make it seem like the user is actually reading a response from said philosophers. 
     """
@@ -61,7 +65,7 @@ def analyze():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
      
-     # This GET enpoint generates a dilemma itself.
+     # This GET endpoint generates a dilemma itself.
     @app.route('/generate-dilemma', methonds=['GET'])
     def generate_dilemma():
         try:

@@ -13,7 +13,7 @@ async function submitResponse() {
       },
       body: JSON.stringify({ response: userInput })
     });
-      //Asynch Function for error cathcing once analysis is made
+      //Function for error cathcing once analysis is made
     const data = await response.json();
 
     if (response.ok) {
@@ -33,6 +33,8 @@ async function submitResponse() {
     const response = await fetch('https://philosophy-ai.onrender.com/generate-dilemma');
     const data = await response.json();
 
+    //check if error receiuved is json or html
+
     if (response.ok) {
       dilemmaElement.innerText = data.dilemma;
     } else {
@@ -43,4 +45,5 @@ async function submitResponse() {
     dilemmaElement.innerText = `Network error: ${error.message || 'Unable to fetch dilemma.'}`;
     console.error("Network or server error:", error);
   }
- }
+  
+}

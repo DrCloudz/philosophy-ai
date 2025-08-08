@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Philosophy AI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="\static\styles.css">
+  <link rel="stylesheet" href="static/styles.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>🧠 Philosophy AI</h1>
-    
-    <p id="dilemma">
-      <strong>Dilemma:</strong> Is it a person's fault or the worlds fault if they become homeless?
-    </p>
+ 
+  <header>
+    <h1>Philosophy AI</h1>
+    <button class="button" onclick="generateDilemma()">New Dilemma</button>
+  </header>
 
-    <textarea id="userInput" placeholder="Share your thoughts here..."></textarea>
+  <main>
+    <!-- Current Dilemma Section -->
+    <section id="current-dilemma" class="card">
+      <h2>Current Dilemma</h2>
+      <p id="dilemma-text">Press "New Dilemma" to begin.</p>
+      <div class="actions">
+        <button class="button" onclick="favoriteCurrentDilemma()">⭐ Favorite</button>
+        <button class="button button-outline" onclick="answerCurrentDilemma()">💭 Answer</button>
+      </div>
+    </section>
 
-    <button onclick="submitResponse()">🧐 Analyze</button>
-    <button onclick="generateDilemma()">🔄 New Dilemma</button>
+    <!-- Other Worldly Dilemmas -->
+    <section id="other-dilemmas" class="card">
+      <h2>Other Worldly Dilemmas</h2>
+      <ul id="dilemma-list">
+        <!-- Dynamically populated -->
+      </ul>
+    </section>
 
-    <h2>Philosophical Analysis</h2>
-    <pre id="result">Waiting for your response...</pre>
-  </div>
+    <!-- Favorites -->
+    <section id="favorites" class="card">
+      <h2>Your Favorites</h2>
+      <ul id="favorites-list">
+        <li>No favorites yet.</li>
+      </ul>
+    </section>
+  </main>
 
-  <script src="/static/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

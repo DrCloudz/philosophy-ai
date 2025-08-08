@@ -16,8 +16,10 @@
   --color-text: #f1e9d2;
   --color-accent: #c084fc;
   --color-secondary: #6b7280;
-  --color-glow: rgba(51, 29, 72, 0.25);
-  --gradient: radial-gradient(circle, #56378f, #1b235e);
+  --color-glow: rgba(192, 132, 252, 0.35);
+  --gradient: radial-gradient(circle at top, #32215e, #0d0d0d 80%);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --transition-fast: 0.25s ease;
 }
 
 /* ========== Body & Base ========== */
@@ -28,8 +30,13 @@ body {
   min-height: 100vh;
   line-height: 1.75;
   padding: 2rem;
-  position: relative;
   overflow-x: hidden;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ========== Header ========== */
@@ -43,15 +50,52 @@ header {
 
 h1 {
   font-family: var(--font-title);
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   letter-spacing: 1px;
   background: linear-gradient(to right, #a855f7, #8b5cf6);
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 15px var(--color-glow);
+  text-shadow: 0 0 20px var(--color-glow);
+  transition: transform var(--transition-fast);
+}
+
+h1:hover {
+  transform: scale(1.05);
 }
 
 /* ========== Buttons ========== */
 .button {
   font-family: var(--font-body);
   background: var(--color-accent);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.button:hover {
+  background: #a855f7;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+/* ========== Card/Surface Styling ========== */
+.card {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(192, 132, 252, 0.4);
 }
